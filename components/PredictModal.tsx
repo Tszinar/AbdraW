@@ -38,15 +38,18 @@ export default function PredictModal({ match, onClose, onSave }) {
     
     if (!error) {
       onSave?.()
-      onClose()
+    } else {
+      alert('Ошибка при сохранении: ' + error.message)
     }
   }
+  
+  if (!match) return null
   
   return (
     <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
       <div className="bg-[#131929] border border-[#2a3550] rounded-lg p-6 w-full max-w-md">
         <h3 className="text-lg font-bold text-center mb-4">
-          {match?.team1?.name} — {match?.team2?.name}
+          {match.team1?.name} — {match.team2?.name}
         </h3>
         
         <div className="flex items-center justify-center gap-4 mb-6">
